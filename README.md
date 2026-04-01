@@ -1,57 +1,51 @@
 # PrayerConnect
 
-PrayerConnect is een gratis, mobielvriendelijk gebedsplatform voor kerken. Dit project is opgezet als multi-tenant SaaS met een React + TypeScript frontend en Supabase als backend voor auth, database, realtime en row-level security.
+PrayerConnect is een gratis, mobielvriendelijk gebedsplatform voor kerken.
 
-## Live demo
+## Live app
 
-GitHub Pages demo:
-https://simplederpyman.github.io/prayerconnect/
+- GitHub Pages: https://simplederpyman.github.io/prayerconnect/
+- Repo: https://github.com/simplederpyman/prayerconnect
+- Supabase project: https://supabase.com/dashboard/project/iatehwjwhmhvcujroxka
+
+## Wat hier nu live draait
+
+Deze repository bevat een **bruikbare statische GitHub Pages app** die direct met Supabase praat vanuit de browser.
+
+Functionaliteit:
+- Registreren van leider + kerk
+- Inloggen
+- Publieke gebedsmuur per kerk via hash-route
+- Publiek verzoek indienen
+- Dashboard voor leiders
+- Goedkeuren van openbare verzoeken
+- Markeren als beantwoord
+- Nieuw verzoek toevoegen vanuit dashboard
 
 ## Stack
 
-- React + TypeScript
-- Vite
-- Tailwind CSS
-- Supabase
-- shadcn/ui-stijl componenten
-- Recharts
-- Lucide icons
-- Framer Motion
+- Pure static HTML/CSS/JS voor GitHub Pages compatibiliteit
+- Supabase JS client via CDN
+- Supabase database + auth + RLS
 
-## Kernroutes
+## Routes
 
-### Publiek
-- `/`
-- `/login`
-- `/register`
-- `/kerk/:slug/gebedsmuur`
-- `/kerk/:slug/delen`
-
-### Dashboard
-- `/dashboard`
-- `/dashboard/verzoeken`
-- `/dashboard/verzoek/:id`
-- `/dashboard/nieuw`
-- `/dashboard/kalender`
-- `/dashboard/team`
-- `/dashboard/rapporten`
-- `/dashboard/instellingen`
-
-## Starten
-
-1. Installeer dependencies:
-   `npm install`
-2. Kopieer `.env.example` naar `.env`
-3. Vul je Supabase projectgegevens in
-4. Start de app:
-   `npm run dev`
+Hash-routes omdat GitHub Pages geen server-side routing heeft:
+- `#/`
+- `#/login`
+- `#/register`
+- `#/kerk/[slug]/gebedsmuur`
+- `#/kerk/[slug]/delen`
+- `#/dashboard`
+- `#/dashboard/verzoeken`
+- `#/dashboard/nieuw`
 
 ## Supabase
 
 Project ref: `iatehwjwhmhvcujroxka`
 
-Voer `supabase/schema.sql` uit in de SQL editor van Supabase of gebruik het reeds gekoppelde project.
+Schema staat in `supabase/schema.sql` en is toegepast op het project.
 
-## Nog te koppelen
+## Opmerking
 
-De frontend bevat nu een volledige starterstructuur en voorbeelddata. Volgende stap is het vervangen van mock data door echte Supabase queries en auth flows.
+Voor GitHub Pages is gekozen voor een pure static app in plaats van de oorspronkelijke Vite-buildflow, zodat de site zonder extra CI of secrets echt bruikbaar live kan staan.
