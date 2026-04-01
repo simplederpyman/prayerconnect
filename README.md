@@ -1,51 +1,46 @@
 # PrayerConnect
 
-PrayerConnect is een gratis, mobielvriendelijk gebedsplatform voor kerken.
+PrayerConnect is een gratis, mobielvriendelijk gebedsplatform voor kerken. Deze deploy gebruikt een GitHub Pages frontend met Supabase voor auth, database en row-level security.
 
-## Live app
+## Live
 
-- GitHub Pages: https://simplederpyman.github.io/prayerconnect/
+- App: https://simplederpyman.github.io/prayerconnect/
 - Repo: https://github.com/simplederpyman/prayerconnect
-- Supabase project: https://supabase.com/dashboard/project/iatehwjwhmhvcujroxka
+- Supabase project: `iatehwjwhmhvcujroxka`
 
-## Wat hier nu live draait
+## Wat zit erin
 
-Deze repository bevat een **bruikbare statische GitHub Pages app** die direct met Supabase praat vanuit de browser.
+- publieke gebedsmuur per kerk
+- login en registratie voor leiders
+- automatisch herstellen/aanmaken van kerk + admin membership bij dashboard toegang
+- leidersdashboard met verzoeken, snelle stats en events
+- openbare inzendingen met goedkeuringsflow
 
-Functionaliteit:
-- Registreren van leider + kerk
-- Inloggen
-- Publieke gebedsmuur per kerk via hash-route
-- Publiek verzoek indienen
-- Dashboard voor leiders
-- Goedkeuren van openbare verzoeken
-- Markeren als beantwoord
-- Nieuw verzoek toevoegen vanuit dashboard
+## Belangrijke routes
 
-## Stack
-
-- Pure static HTML/CSS/JS voor GitHub Pages compatibiliteit
-- Supabase JS client via CDN
-- Supabase database + auth + RLS
-
-## Routes
-
-Hash-routes omdat GitHub Pages geen server-side routing heeft:
 - `#/`
 - `#/login`
 - `#/register`
-- `#/kerk/[slug]/gebedsmuur`
-- `#/kerk/[slug]/delen`
 - `#/dashboard`
 - `#/dashboard/verzoeken`
 - `#/dashboard/nieuw`
+- `#/dashboard/team`
+- `#/dashboard/instellingen`
+- `#/kerk/:slug/gebedsmuur`
+- `#/kerk/:slug/delen`
 
 ## Supabase
 
-Project ref: `iatehwjwhmhvcujroxka`
+Het schema staat in `supabase/schema.sql`.
 
-Schema staat in `supabase/schema.sql` en is toegepast op het project.
+Belangrijk:
+- multi-tenant per kerk via `church_id`
+- publieke gebedsmuur zonder login
+- leidersdashboard met auth en RLS
+- publieke leesrechten alleen voor goedgekeurde openbare verzoeken
 
-## Opmerking
+## Volgende stap
 
-Voor GitHub Pages is gekozen voor een pure static app in plaats van de oorspronkelijke Vite-buildflow, zodat de site zonder extra CI of secrets echt bruikbaar live kan staan.
+- eventbeheer uitbreiden
+- echte teamweergave koppelen
+- mock onderdelen verder vervangen door live data
